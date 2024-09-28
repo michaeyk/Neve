@@ -60,6 +60,7 @@
     ./utils/neocord.nix
     ./utils/harpoon.nix
     ./utils/illuminate.nix
+    ./utils/image.nix
     ./utils/markdown-preview.nix
     ./utils/mini.nix
     ./utils/neodev.nix

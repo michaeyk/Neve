@@ -1,464 +1,374 @@
-# Thanks for the keybinds primeagen and folke!
 {
   globals.mapleader = " ";
 
-  # TODO: Move general mappings to which-key
   keymaps = [
-    # Disable arrow keys
     {
-      mode = ["n" "i"];
-      key = "<Up>";
-      action = "<Nop>";
+      mode = ["n" "x"];
+      key = "j";
+      action = "v:count == 0 ? 'gj' : 'j'";
       options = {
+        expr = true;
         silent = true;
-        noremap = true;
-        desc = "Disable Up arrow key";
       };
     }
     {
-      mode = ["n" "i"];
+      mode = ["n" "x"];
       key = "<Down>";
-      action = "<Nop>";
+      action = "v:count == 0 ? 'gj' : 'j'";
       options = {
+        expr = true;
         silent = true;
-        noremap = true;
-        desc = "Disable Down arrow key";
       };
     }
     {
-      mode = ["n" "i"];
-      key = "<Right>";
-      action = "<Nop>";
+      mode = ["n" "x"];
+      key = "k";
+      action = "v:count == 0 ? 'gk' : 'k'";
       options = {
+        expr = true;
         silent = true;
-        noremap = true;
-        desc = "Disable Right arrow key";
       };
     }
     {
-      mode = ["n" "i"];
-      key = "<Left>";
-      action = "<Nop>";
+      mode = ["n" "x"];
+      key = "<Up>";
+      action = "v:count == 0 ? 'gk' : 'k'";
       options = {
+        expr = true;
         silent = true;
-        noremap = true;
-        desc = "Disable Left arrow key";
       };
     }
-    # Tabs
     {
       mode = "n";
-      key = "<leader><tab>l";
-      action = "<cmd>tablast<cr>";
+      key = "<C-h>";
+      action = "<C-w>h";
       options = {
-        silent = true;
-        desc = "Last tab";
+        desc = "Go to Left Window";
+        remap = true;
       };
     }
-
     {
       mode = "n";
-      key = "<leader><tab>f";
-      action = "<cmd>tabfirst<cr>";
+      key = "<C-j>";
+      action = "<C-w>j";
       options = {
-        silent = true;
-        desc = "First Tab";
+        desc = "Go to Lower Window";
+        remap = true;
       };
     }
-
     {
       mode = "n";
-      key = "<leader><tab><tab>";
-      action = "<cmd>tabnew<cr>";
+      key = "<C-k>";
+      action = "<C-w>k";
       options = {
-        silent = true;
-        desc = "New Tab";
+        desc = "Go to Upper Window";
+        remap = true;
       };
     }
-
     {
       mode = "n";
-      key = "<leader><tab>]";
-      action = "<cmd>tabnext<cr>";
+      key = "<C-l>";
+      action = "<C-w>l";
       options = {
-        silent = true;
-        desc = "Next Tab";
+        desc = "Go to Right Window";
+        remap = true;
       };
     }
-
     {
       mode = "n";
-      key = "<leader><tab>d";
-      action = "<cmd>tabclose<cr>";
-      options = {
-        silent = true;
-        desc = "Close tab";
-      };
+      key = "<C-Up>";
+      action = "<cmd>resize +2<cr>";
+      options = {desc = "Increase Window Height";};
     }
-
     {
       mode = "n";
-      key = "<leader><tab>[";
-      action = "<cmd>tabprevious<cr>";
+      key = "<C-Down>";
+      action = "<cmd>resize -2<cr>";
+      options = {desc = "Decrease Window Height";};
+    }
+    {
+      mode = "n";
+      key = "<C-Left>";
+      action = "<cmd>vertical resize -2<cr>";
+      options = {desc = "Decrease Window Width";};
+    }
+    {
+      mode = "n";
+      key = "<C-Right>";
+      action = "<cmd>vertical resize +2<cr>";
+      options = {desc = "Increase Window Width";};
+    }
+    {
+      mode = "n";
+      key = "<A-j>";
+      action = "<cmd>m .+1<cr>==";
+      options = {desc = "Move Down";};
+    }
+    {
+      mode = "n";
+      key = "<A-k>";
+      action = "<cmd>m .-2<cr>==";
+      options = {desc = "Move Up";};
+    }
+    {
+      mode = "i";
+      key = "<A-j>";
+      action = "<esc><cmd>m .+1<cr>==gi";
+      options = {desc = "Move Down";};
+    }
+    {
+      mode = "i";
+      key = "<A-k>";
+      action = "<esc><cmd>m .-2<cr>==gi";
+      options = {desc = "Move Up";};
+    }
+    {
+      mode = "v";
+      key = "<A-j>";
+      action = ":m '>+1<cr>gv=gv";
+      options = {desc = "Move Down";};
+    }
+    {
+      mode = "v";
+      key = "<A-k>";
+      action = ":m '<-2<cr>gv=gv";
+      options = {desc = "Move Up";};
+    }
+    {
+      mode = "i";
+      key = "kj";
+      action = "<Esc>";
+    }
+    {
+      mode = "i";
+      key = ";";
+      action = ";<c-g>u";
+    }
+    {
+      mode = "i";
+      key = ".";
+      action = ".<c-g>u";
+    }
+    {
+      mode = "i";
+      key = ";";
+      action = ";<c-g>u";
+    }
+    {
+      mode = ["i" "x" "n" "s"];
+      key = "<C-s>";
+      action = "<cmd>w<cr><esc>";
+      options = {desc = "Save File";};
+    }
+    {
+      mode = ["i" "n"];
+      key = "<esc>";
+      action = "<cmd>noh<cr><esc>";
+      options = {desc = "Escape and Clear hlsearch";};
+    }
+    {
+      mode = "n";
+      key = "<leader>ur";
+      action = "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>";
+      options = {desc = "Redraw / Clear hlsearch / Diff Update";};
+    }
+    {
+      mode = "n";
+      key = "n";
+      action = "'Nn'[v:searchforward].'zv'";
       options = {
-        silent = true;
-        desc = "Previous Tab";
+        expr = true;
+        desc = "Next Search Result";
       };
     }
-
-    # Windows
+    {
+      mode = "x";
+      key = "n";
+      action = "'Nn'[v:searchforward]";
+      options = {
+        expr = true;
+        desc = "Next Search Result";
+      };
+    }
+    {
+      mode = "o";
+      key = "n";
+      action = "'Nn'[v:searchforward]";
+      options = {
+        expr = true;
+        desc = "Next Search Result";
+      };
+    }
+    {
+      mode = "n";
+      key = "N";
+      action = "'nN'[v:searchforward].'zv'";
+      options = {
+        expr = true;
+        desc = "Prev Search Result";
+      };
+    }
+    {
+      mode = "x";
+      key = "N";
+      action = "'nN'[v:searchforward]";
+      options = {
+        expr = true;
+        desc = "Prev Search Result";
+      };
+    }
+    {
+      mode = "o";
+      key = "N";
+      action = "'nN'[v:searchforward]";
+      options = {
+        expr = true;
+        desc = "Prev Search Result";
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>cd";
+      action = "vim.diagnostic.open_float";
+      options = {desc = "Line Diagnostics";};
+    }
+    {
+      mode = "n";
+      key = "]d";
+      action = "diagnostic_goto(true)";
+      options = {desc = "Next Diagnostic";};
+    }
+    {
+      mode = "n";
+      key = "[d";
+      action = "diagnostic_goto(false)";
+      options = {desc = "Prev Diagnostic";};
+    }
+    {
+      mode = "n";
+      key = "]e";
+      action = "diagnostic_goto(true 'ERROR')";
+      options = {desc = "Next Error";};
+    }
+    {
+      mode = "n";
+      key = "[e";
+      action = "diagnostic_goto(false 'ERROR')";
+      options = {desc = "Prev Error";};
+    }
+    {
+      mode = "n";
+      key = "]w";
+      action = "diagnostic_goto(true 'WARN')";
+      options = {desc = "Next Warning";};
+    }
+    {
+      mode = "n";
+      key = "[w";
+      action = "diagnostic_goto(false 'WARN')";
+      options = {desc = "Prev Warning";};
+    }
+    {
+      mode = "n";
+      key = "<leader>qq";
+      action = "<cmd>qa<cr>";
+      options = {desc = "Quit All";};
+    }
+    {
+      mode = "n";
+      key = "<leader>ui";
+      action = "vim.show_pos";
+      options = {desc = "Inspect Pos";};
+    }
+    {
+      mode = "t";
+      key = "<esc><esc>";
+      action = "<c-\\><c-n>";
+      options = {desc = "Enter Normal Mode";};
+    }
+    {
+      mode = "t";
+      key = "<C-h>";
+      action = "<cmd>wincmd h<cr>";
+      options = {desc = "Go to Left Window";};
+    }
+    {
+      mode = "t";
+      key = "<C-j>";
+      action = "<cmd>wincmd j<cr>";
+      options = {desc = "Go to Lower Window";};
+    }
+    {
+      mode = "t";
+      key = "<C-k>";
+      action = "<cmd>wincmd k<cr>";
+      options = {desc = "Go to Upper Window";};
+    }
+    {
+      mode = "t";
+      key = "<C-l>";
+      action = "<cmd>wincmd l<cr>";
+      options = {desc = "Go to Right Window";};
+    }
+    {
+      mode = "t";
+      key = "<C-/>";
+      action = "<cmd>close<cr>";
+      options = {desc = "Hide Terminal";};
+    }
     {
       mode = "n";
       key = "<leader>ww";
       action = "<C-W>p";
       options = {
-        silent = true;
-        desc = "Other window";
+        desc = "Other Window";
+        remap = true;
       };
     }
-
     {
       mode = "n";
       key = "<leader>wd";
       action = "<C-W>c";
       options = {
-        silent = true;
-        desc = "Delete window";
+        desc = "Delete Window";
+        remap = true;
       };
     }
-
     {
       mode = "n";
       key = "<leader>w-";
       action = "<C-W>s";
       options = {
-        silent = true;
-        desc = "Split window below";
+        desc = "Split Window Below";
+        remap = true;
       };
     }
-
     {
       mode = "n";
       key = "<leader>w|";
       action = "<C-W>v";
       options = {
-        silent = true;
-        desc = "Split window right";
+        desc = "Split Window Right";
+        remap = true;
       };
     }
-
-    # {
-    #   mode = "n";
-    #   key = "<leader>-";
-    #   action = "<C-W>s";
-    #   options = {
-    #     silent = true;
-    #     desc = "Split window below";
-    #   };
-    # }
-
-    # {
-    #   mode = "n";
-    #   key = "<leader>|";
-    #   action = "<C-W>v";
-    #   options = {
-    #     silent = true;
-    #     desc = "Split window right";
-    #   };
-    # }
-
     {
       mode = "n";
-      key = "<C-s>";
-      action = "<cmd>w<cr><esc>";
+      key = "<leader>-";
+      action = "<C-W>s";
       options = {
-        silent = true;
-        desc = "Save file";
+        desc = "Split Window Below";
+        remap = true;
       };
     }
-
-    # Quit/Session
     {
       mode = "n";
-      key = "<leader>qq";
-      action = "<cmd>quitall<cr><esc>";
+      key = "<leader>|";
+      action = "<C-W>v";
       options = {
-        silent = true;
-        desc = "Quit all";
-      };
-    }
-
-    {
-      mode = "n";
-      key = "<leader>qs";
-      action = ":lua require('persistence').load()<cr>";
-      options = {
-        silent = true;
-        desc = "Restore session";
-      };
-    }
-
-    {
-      mode = "n";
-      key = "<leader>ql";
-      action = "<cmd>lua require('persistence').load({ last = true })<cr>";
-      options = {
-        silent = true;
-        desc = "Restore last session";
-      };
-    }
-
-    {
-      mode = "n";
-      key = "<leader>qd";
-      action = "<cmd>lua require('persistence').stop()<cr>";
-      options = {
-        silent = true;
-        desc = "Don't save current session";
-      };
-    }
-
-    {
-      mode = "n";
-      key = "<leader>ul";
-      action = ":lua ToggleLineNumber()<cr>";
-      options = {
-        silent = true;
-        desc = "Toggle Line Numbers";
-      };
-    }
-
-    {
-      mode = "n";
-      key = "<leader>uL";
-      action = ":lua ToggleRelativeLineNumber()<cr>";
-      options = {
-        silent = true;
-        desc = "Toggle Relative Line Numbers";
-      };
-    }
-
-    {
-      mode = "n";
-      key = "<leader>uw";
-      action = ":lua ToggleWrap()<cr>";
-      options = {
-        silent = true;
-        desc = "Toggle Line Wrap";
-      };
-    }
-
-    {
-      mode = "v";
-      key = "J";
-      action = ":m '>+1<CR>gv=gv";
-      options = {
-        silent = true;
-        desc = "Move up when line is highlighted";
-      };
-    }
-
-    {
-      mode = "v";
-      key = "K";
-      action = ":m '<-2<CR>gv=gv";
-      options = {
-        silent = true;
-        desc = "Move down when line is highlighted";
-      };
-    }
-
-    {
-      mode = "n";
-      key = "J";
-      action = "mzJ`z";
-      options = {
-        silent = true;
-        desc = "Allow cursor to stay in the same place after appeding to current line";
-      };
-    }
-
-    {
-      mode = "v";
-      key = "<";
-      action = "<gv";
-      options = {
-        silent = true;
-        desc = "Indent while remaining in visual mode.";
-      };
-    }
-
-    {
-      mode = "v";
-      key = ">";
-      action = ">gv";
-      options = {
-        silent = true;
-        desc = "Indent while remaining in visual mode.";
-      };
-    }
-
-    {
-      mode = "n";
-      key = "<C-d>";
-      action = "<C-d>zz";
-      options = {
-        silent = true;
-        desc = "Allow <C-d> and <C-u> to keep the cursor in the middle";
-      };
-    }
-
-    {
-      mode = "n";
-      key = "<C-u>";
-      action = "<C-u>zz";
-      options = {
-        desc = "Allow C-d and C-u to keep the cursor in the middle";
-      };
-    }
-
-    # Remap for dealing with word wrap and adding jumps to the jumplist.
-    {
-      mode = "n";
-      key = "j";
-      action.__raw = "
-        [[(v:count > 1 ? 'm`' . v:count : 'g') . 'j']]
-      ";
-      options = {
-        expr = true;
-        desc = "Remap for dealing with word wrap and adding jumps to the jumplist.";
-      };
-    }
-
-    {
-      mode = "n";
-      key = "k";
-      action.__raw = "
-        [[(v:count > 1 ? 'm`' . v:count : 'g') . 'k']]
-      ";
-      options = {
-        expr = true;
-        desc = "Remap for dealing with word wrap and adding jumps to the jumplist.";
-      };
-    }
-
-    {
-      mode = "n";
-      key = "n";
-      action = "nzzzv";
-      options = {
-        desc = "Allow search terms to stay in the middle";
-      };
-    }
-
-    {
-      mode = "n";
-      key = "N";
-      action = "Nzzzv";
-      options = {
-        desc = "Allow search terms to stay in the middle";
-      };
-    }
-
-    # Paste stuff without saving the deleted word into the buffer
-    {
-      mode = "x";
-      key = "<leader>p";
-      action = "\"_dP";
-      options = {
-        desc = "Deletes to void register and paste over";
-      };
-    }
-
-    # Copy stuff to system clipboard with <leader> + y or just y to have it just in vim
-    {
-      mode = ["n" "v"];
-      key = "<leader>y";
-      action = "\"+y";
-      options = {
-        desc = "Copy to system clipboard";
-      };
-    }
-
-    {
-      mode = ["n" "v"];
-      key = "<leader>Y";
-      action = "\"+Y";
-      options = {
-        desc = "Copy to system clipboard";
-      };
-    }
-
-    # Delete to void register
-    {
-      mode = ["n" "v"];
-      key = "<leader>D";
-      action = "\"_d";
-      options = {
-        desc = "Delete to void register";
-      };
-    }
-
-    # <C-c> instead of pressing esc just because
-    {
-      mode = "i";
-      key = "<C-c>";
-      action = "<Esc>";
-    }
-
-    {
-      mode = "n";
-      key = "<C-f>";
-      action = "!tmux new tmux-sessionizer<CR>";
-      options = {
-        desc = "Switch between projects";
+        desc = "Split Window Right";
+        remap = true;
       };
     }
   ];
-  extraConfigLua = ''
-    local notify = require("notify")
-
-    local function show_notification(message, level)
-      notify(message, level, { title = "conform.nvim" })
-    end
-
-    function ToggleLineNumber()
-    if vim.wo.number then
-      vim.wo.number = false
-      show_notification("Line numbers disabled", "info")
-    else
-      vim.wo.number = true
-        vim.wo.relativenumber = false
-        show_notification("Line numbers enabled", "info")
-        end
-        end
-
-        function ToggleRelativeLineNumber()
-        if vim.wo.relativenumber then
-          vim.wo.relativenumber = false
-          show_notification("Relative line numbers disabled", "info")
-        else
-          vim.wo.relativenumber = true
-            vim.wo.number = false
-            show_notification("Relative line numbers enabled", "info")
-          end
-        end
-
-        function ToggleWrap()
-          if vim.wo.wrap then
-            vim.wo.wrap = false
-            show_notification("Wrap disabled", "info")
-          else
-            vim.wo.wrap = true
-              vim.wo.number = false
-              show_notification("Wrap enabled", "info")
-          end
-        end
-
-       if vim.lsp.inlay_hint then
-         vim.keymap.set('n', '<leader>uh', function()
-           vim.lsp.inlay_hint(0, nil)
-         end, { desc = 'Toggle Inlay Hints' })
-       end
-  '';
 }
